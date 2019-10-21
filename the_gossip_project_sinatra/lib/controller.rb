@@ -8,11 +8,16 @@ class ApplicationController < Sinatra::Base
 
     erb :index, locals: {gossips: Gossip.all}
   end
-
+# on appelle gossip.all qui affiche toutes les gossips
   get '/gossips/new/' do
   	erb :new_gossip
   end
 
+  get '/gossips/:id/' do
+
+    erb :show, locals: { gossips: Gossip.find(params[:id]), id_gossip: params[:id]}
+  end
+  # les routes sont les url dans le navigateur, elles correspondent chacunes à un fichier
 
 	post '/gossips/new/' do
 		Gossip.new(params['gossip_author'],params['gossip_content']).save
@@ -26,15 +31,5 @@ class ApplicationController < Sinatra::Base
      redirect '/'
 
 	end
-  get '/hello/:id' do
-     # matches "GET /hello/foo" and "GET /hello/bar"
-     # params['id'] is 'foo' or 'bar'
-    "Hello #{params['id']}!"
-  end
-
-  # get '/:id' do
-  #   @foo = Foo.find(params['id'])
-  #   haml '%h1= @foo.nom'
-  # end
 
 end

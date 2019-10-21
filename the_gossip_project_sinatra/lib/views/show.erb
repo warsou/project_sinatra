@@ -1,0 +1,20 @@
+
+
+<html>
+  <head>
+    <title>The Gossip Project</title>
+  </head>
+
+  <body>
+
+    <% gossips.each do |gossip| %>
+    <h1>Voici la page du potin n° <%= " #{params['id']}!"%></h1>
+      <p>
+        <strong>Son auteur : </strong><%= gossip.author %><br/>
+        <strong> Le contenu du potin :</strong> <%= gossip.content %>
+      </p>
+      <% end %>
+
+<%# on a besoin d'un each do pour etre sure de verifier toutes les gossips %>
+  </body>
+</html>
